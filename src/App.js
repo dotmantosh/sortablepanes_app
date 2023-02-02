@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { SortablePane, Pane } from "react-sortable-pane";
+import Example from "./components/Index";
+import SimpleUncontrolledExample from "./components/Example2";
+import SimpleControlledFullExample from "./components/Example3";
 
 function App() {
+  const [order, setOrder] = useState(["0", "1", "2"]);
+  const [panes, setPanes] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className="text-center pt-4">Sortable Panes</h1>
+      <Example />
     </div>
   );
 }
