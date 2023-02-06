@@ -66,7 +66,7 @@ function Example() {
     return paneObjArr.map((item, indexOfOrder) => (
       <Pane
         key={indexOfOrder}
-        defaultSize={{
+        size={{
           width: pane[item].width + "%",
           height: "100%",
         }}
@@ -190,9 +190,8 @@ function Example() {
 
   const download = async () => {
     try {
-      const baseUrl = "http://localhost:5000";
       /* const baseUrl = process.env.REACT_APP_BASE_URL */
-      /* const baseUrl = process.env.REACT_APP_BASE_URL_PROD; */
+      const baseUrl = process.env.REACT_APP_BASE_URL_PROD;
       setDownloading(true);
       const response = await axios({
         url: `${baseUrl}/api/data/download`,
@@ -235,7 +234,7 @@ function Example() {
           <div
             key={index}
             style={{
-              width: "800px",
+              width: "300px",
               height: "300px",
             }}
           >
@@ -251,9 +250,10 @@ function Example() {
               }}
               onResizeStop={(e, key, dir, ref, d) => {
                 const newState = data;
-                newState[index][key].width =
-                  newState[index][key].width + d.width;
-                setData(newState);
+                newState[index][key.toString()].width =
+                  newState[index][key.toString()].width + d.width;
+                console.log(d);
+                /* setData(newState); */
               }}
             >
               {getPanes(pane)}
